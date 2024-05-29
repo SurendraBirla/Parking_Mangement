@@ -17,16 +17,20 @@ class AuthenticationController < ApplicationController
       @user = User.find_by(email: login_params[:email])
       if @user&.authenticate(login_params[:password])
         token = JsonWebToken.encode(user_id: @user.id)
-        render json: { token: token }, status: :ok
+        render json: { token: token, Name: @user.name , Email: @user.email }, status: :ok
       else
         render json: { errors: 'Invalid email or password' }, status: :unauthorized
       end
+    end
+
+    def logout
+
     end
   
     private
   
     def signup_params
-      params.permit(:email, :password, :password_confirmation)
+      params.permit(:email, :password, :password_confirmation, :name, :mobile_nu, :address)
     end
   
     def login_params
