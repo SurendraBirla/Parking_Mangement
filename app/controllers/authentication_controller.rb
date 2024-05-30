@@ -30,7 +30,7 @@ class AuthenticationController < ApplicationController
     private
   
     def signup_params
-      params.permit(:email, :password, :password_confirmation, :name, :mobile_nu, :address)
+      params.permit(:email, :password, :password_confirmation, :name, :mobile_nu, :address, :license_nu)
     end
   
     def login_params
