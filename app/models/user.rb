@@ -1,6 +1,8 @@
 class User < ApplicationRecord
     has_secure_password
-    has_many :vehicles 
+
+    has_many :vehicles ,dependent: :destroy
+    has_many :parkings, dependent: :destroy
   
     validates :email, presence: true, uniqueness: true
     validates :password , presence: true
@@ -9,7 +11,7 @@ class User < ApplicationRecord
     validates :address, presence: true 
 
     def self.ransackable_associations(auth_object = nil)
-      ["vehicles"]
+      ["vehicles","parkings"]
     end
 
     def self.ransackable_attributes(auth_object = nil)

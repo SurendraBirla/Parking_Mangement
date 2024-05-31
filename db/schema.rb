@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_29_131113) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_30_111946) do
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -37,6 +37,18 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_29_131113) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "parkings", force: :cascade do |t|
+    t.datetime "check_in"
+    t.datetime "check_out"
+    t.string "status"
+    t.integer "vehicle_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_parkings_on_user_id"
+    t.index ["vehicle_id"], name: "index_parkings_on_vehicle_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email"
     t.string "password_digest"
@@ -48,15 +60,26 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_29_131113) do
     t.string "license_nu"
   end
 
-  create_table "vehicles", force: :cascade do |t|
+  create_table "vehicle_prices", force: :cascade do |t|
     t.string "type_name"
+    t.integer "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "vehicles", force: :cascade do |t|
     t.boolean "insurance"
     t.string "registration_num"
     t.integer "user_id", null: false
+    t.integer "vehicle_price_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_vehicles_on_user_id"
+    t.index ["vehicle_price_id"], name: "index_vehicles_on_vehicle_price_id"
   end
 
+  add_foreign_key "parkings", "users"
+  add_foreign_key "parkings", "vehicles"
   add_foreign_key "vehicles", "users"
+  add_foreign_key "vehicles", "vehicle_prices"
 end

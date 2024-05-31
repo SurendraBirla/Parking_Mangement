@@ -48,7 +48,7 @@ class VehiclesController < ApplicationController
     def vehicle_params
         # debugger
         # params.require(:vehicle).permit(:type, :registration_num, :insurance, :user_id)
-        params.permit(:type_name, :registration_num, :insurance)
+        params.permit( :registration_num, :insurance, :vehicle_price_id)
     end
 
     def find_vehicle
