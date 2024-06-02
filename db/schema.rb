@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_30_111946) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_31_094639) do
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -49,6 +49,20 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_30_111946) do
     t.index ["vehicle_id"], name: "index_parkings_on_vehicle_id"
   end
 
+  create_table "reports", force: :cascade do |t|
+    t.string "driver_name"
+    t.string "driver_license_nu"
+    t.string "driver_mobile_nu"
+    t.string "vehicle_type"
+    t.string "vehicle_registration_nu"
+    t.string "status"
+    t.integer "parking_charge"
+    t.integer "parking_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["parking_id"], name: "index_reports_on_parking_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email"
     t.string "password_digest"
@@ -80,6 +94,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_30_111946) do
 
   add_foreign_key "parkings", "users"
   add_foreign_key "parkings", "vehicles"
+  add_foreign_key "reports", "parkings"
   add_foreign_key "vehicles", "users"
   add_foreign_key "vehicles", "vehicle_prices"
 end

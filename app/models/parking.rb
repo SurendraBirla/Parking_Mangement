@@ -4,6 +4,7 @@ class Parking < ApplicationRecord
 
     belongs_to :user
     belongs_to :vehicle
+    has_many :reports 
 
     # enum  status: [:out, :stay]
     # validates :vehicle_type, presence: true
@@ -11,7 +12,7 @@ class Parking < ApplicationRecord
 
 
     def self.ransackable_associations(auth_object = nil)
-        ["user","vehicle"]
+        ["user","vehicle","reports"]
     end
     def self.ransackable_attributes(auth_object = nil)
         ["created_at", "id", "id_value", "status", "check_in", "check_out", "updated_at"]

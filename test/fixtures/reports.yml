@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  driver_name: MyString
+  driver_license_nu: MyString
+  driver_mobile_nu: MyString
+  vehicle_type: MyString
+  vehicle_registration_nu: MyString
+  status: MyString
+  parking_charge: 1
+  parking: one
+
+two:
+  driver_name: MyString
+  driver_license_nu: MyString
+  driver_mobile_nu: MyString
+  vehicle_type: MyString
+  vehicle_registration_nu: MyString
+  status: MyString
+  parking_charge: 1
+  parking: two

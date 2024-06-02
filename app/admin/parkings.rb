@@ -24,11 +24,16 @@ ActiveAdmin.register Parking do
     selectable_column
     id_column
     column :user
-
+ 
     column :vehicle
     column :check_in
     column :check_out
     column :status
+    column "Report" do |parking|
+      # byebug
+      # link_to "GENERATE", report_create_path(parking), method: :post
+      link_to "GENERATE", report_create_path(parking_id: parking.id), method: :post
+    end
     actions
   end
 
@@ -56,6 +61,10 @@ ActiveAdmin.register Parking do
       row :check_in
       row :check_out
       row :status
+      # row :Report do 
+      #   link_to('Generate','#')
+      # end
+      
     end
     active_admin_comments
   end
