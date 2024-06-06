@@ -28,7 +28,6 @@ ActiveAdmin.register Parking do
     column :vehicle
     column :check_in
     column :check_out
-    column :status
     column "Report" do |parking|
       # byebug
       # link_to "GENERATE", report_create_path(parking), method: :post
@@ -46,10 +45,7 @@ ActiveAdmin.register Parking do
       # f.input :check_in, as: :datetime_picker
       # f.input :check_out, as: :datetime_picker
       # f.input :status
-      f.input :status,
-        as: :radio,
-        label: 'Status',
-        collection: [['In', 'IN'], ['Out', 'OUT']]
+      f.input :check_out
     end
     f.actions
   end
@@ -60,7 +56,6 @@ ActiveAdmin.register Parking do
       row :vehicle
       row :check_in
       row :check_out
-      row :status
       # row :Report do 
       #   link_to('Generate','#')
       # end

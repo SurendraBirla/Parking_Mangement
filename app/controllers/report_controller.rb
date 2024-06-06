@@ -1,17 +1,20 @@
 class ReportController < ApplicationController
-    def show
+    before_action :authenticate_request
 
+    def show
+        @reports = Report.joins(:parking).where(parkings: { user_id: current_user.id })
+        render json: @reports, status: :ok
     end
 
     def create
-        
         # @report = Report.new(report_params)
         parking = Parking.find(params[:parking_id])
         @report = Report.new(report_params)
         @report.set_details(parking)
         # debugger
         if @report.save
-            render json: @report, status: :ok
+            # render json: @report, status: :ok
+            redirect_to admin_reports_path
         else
             render json: { errors: @report.errors.full_messages }
         end
@@ -20,8 +23,6 @@ class ReportController < ApplicationController
     private
 
     def report_params
-        # params.permit(:driver_name, :driver_license_nu, :driver_mobile_nu, :vehicle_type, 
-        # :vehicle_registration_nu, :status, :parking_charge, :parking_id)
         params.permit(:parking_id)
     end
 

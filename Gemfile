@@ -73,3 +73,6 @@ gem 'jwt', '~> 2.2'
 gem 'activeadmin'
 gem 'devise'
 gem 'sassc-rails'
+
+gem 'rspec-rails'
+gem 'active_model_serializers'

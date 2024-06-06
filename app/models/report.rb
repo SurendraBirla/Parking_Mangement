@@ -13,28 +13,20 @@ class Report < ApplicationRecord
   # private 
 
   def set_details(parking)
-    # self.parking_id ||= parking.id
     self.driver_name ||= parking.user.name
     self.driver_license_nu ||= parking.user.license_nu
     self.driver_mobile_nu ||= parking.user.mobile_nu
     self.vehicle_type ||= parking.vehicle.vehicle_price.type_name
     self.vehicle_registration_nu ||= parking.vehicle.registration_num
-    self.status ||= parking.status
-    self.parking_charge ||= parking.vehicle.vehicle_price.price
+    self.parking_charge ||= charge_calculate(parking)
    
   end
+  
+  def charge_calculate(parking)
+    # debugger
+    curr_price = parking.vehicle.vehicle_price.price
+    total_hours = (parking.check_out - parking.check_in) / 3600.00
+    actual_price = curr_price * total_hours
 
-    # driver_name
-    # driver_license_nu
-    # driver_mobile_nu
-    # vehicle_type
-    # vehicle_registration_nu
-    # status
-    # parking_charge
-    # parking_id
-    # t.datetime "created_at", null: false
-    # t.datetime "updated_at", null: false
-    # t.index ["parking_id"], name: "index_reports_on_parking_id"
-
-
+  end
 end

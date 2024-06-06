@@ -5,7 +5,7 @@ ActiveAdmin.register VehiclePrice do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  # permit_params :type_name, :price
+  permit_params :type_name, :price
   #
   # or
   #

@@ -9,6 +9,7 @@ class User < ApplicationRecord
     validates :name, presence: true
     validates :mobile_nu, presence: true
     validates :address, presence: true 
+    validates :license_nu, presence: true 
 
     def self.ransackable_associations(auth_object = nil)
       ["vehicles","parkings"]

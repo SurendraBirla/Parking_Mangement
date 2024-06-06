@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   end
 
   post 'report/create', to: 'report#create'
-  get 'report/show', to: 'reports#show'
+  get 'report/show', to: 'report#show'
 
   post 'auth/signup', to: 'authentication#signup'
   post 'auth/login', to: 'authentication#login'

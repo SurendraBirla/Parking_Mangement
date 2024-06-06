@@ -50,6 +50,11 @@ GEM
       erubi (~> 1.11)
       rails-dom-testing (~> 2.2)
       rails-html-sanitizer (~> 1.6)
+    active_model_serializers (0.10.14)
+      actionpack (>= 4.1)
+      activemodel (>= 4.1)
+      case_transform (>= 0.2)
+      jsonapi-renderer (>= 0.1.1.beta1, < 0.3)
     activeadmin (3.2.1)
       arbre (~> 1.2, >= 1.2.1)
       csv
@@ -107,6 +112,8 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
+    case_transform (0.2)
+      activesupport
     concurrent-ruby (1.2.3)
     connection_pool (2.4.1)
     crass (1.0.6)
@@ -121,6 +128,7 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    diff-lcs (1.5.1)
     drb (2.2.1)
     erubi (1.12.0)
     ffi (1.16.3)
@@ -154,6 +162,7 @@ GEM
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
+    jsonapi-renderer (0.2.2)
     jwt (2.8.1)
       base64
     kaminari (1.2.2)
@@ -257,6 +266,23 @@ GEM
       railties (>= 5.2)
     rexml (3.2.8)
       strscan (>= 3.0.9)
+    rspec-core (3.13.0)
+      rspec-support (~> 3.13.0)
+    rspec-expectations (3.13.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.13.0)
+    rspec-mocks (3.13.1)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.13.0)
+    rspec-rails (6.1.2)
+      actionpack (>= 6.1)
+      activesupport (>= 6.1)
+      railties (>= 6.1)
+      rspec-core (~> 3.13)
+      rspec-expectations (~> 3.13)
+      rspec-mocks (~> 3.13)
+      rspec-support (~> 3.13)
+    rspec-support (3.13.1)
     ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
     sassc (2.4.0)
@@ -313,6 +339,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  active_model_serializers
   activeadmin
   bcrypt (~> 3.1.7)
   bootsnap
@@ -326,6 +353,7 @@ DEPENDENCIES
   puma (>= 5.0)
   rails (~> 7.1.3, >= 7.1.3.3)
   redis (>= 4.0.1)
+  rspec-rails
   sassc-rails
   selenium-webdriver
   sprockets-rails

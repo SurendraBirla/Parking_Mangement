@@ -6,7 +6,8 @@ class AuthenticationController < ApplicationController
       @user = User.new(signup_params)
       if @user.save
         token = JsonWebToken.encode(user_id: @user.id)
-        render json: { user: @user, token: token }, status: :created
+        # render json: { user: @user, token: token }, status: :created
+        render json: { user: AuthenticationSerializer.new(@user), token: token }, status: :created
       else
         render json: { errors: @user.errors.full_messages }, status: :unprocessable_entity
       end
@@ -17,14 +18,16 @@ class AuthenticationController < ApplicationController
       @user = User.find_by(email: login_params[:email])
       if @user&.authenticate(login_params[:password])
         token = JsonWebToken.encode(user_id: @user.id)
-        render json: { token: token, Name: @user.name , Email: @user.email }, status: :ok
+        # render json: { token: token, Name: @user.name , Email: @user.email }, status: :ok
+        render json: { user: AuthenticationSerializer.new(@user), token: token }, status: :ok
       else
         render json: { errors: 'Invalid email or password' }, status: :unauthorized
       end
     end
 
     def logout
-
+        token = JsonWebToken.decode(user_id: nil, SECRET_KEY: nil )
+        render json: { message: 'You are successfully logout ...! ' }, status: :ok
     end
   
     private
