@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
     protected
   
     def authenticate_request
+      # debugger
       header = request.headers['Authorization']
       header = header.split(' ').last if header
       decoded = JsonWebToken.decode(header)

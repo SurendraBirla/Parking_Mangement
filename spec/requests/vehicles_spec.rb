@@ -12,6 +12,7 @@ RSpec.describe "Vehicles", type: :request do
   end
 
   describe "POST #create" do
+  # debugger
     it "it should be create vehicle" do
       post '/vehicles', headers: { "Authorization" => "Bearer #{token}" }, params: { registration_num: 'ABC-3212', insurance: true, vehicle_price_id: vehicle_price.id }
       expect(response).to have_http_status(201)
@@ -25,10 +26,12 @@ RSpec.describe "Vehicles", type: :request do
   end
 
   describe "PUT #update" do
+  # debugger
     it 'it should be updates a vehicle' do
       regis_num = 'XYZ-0000'
       put "/vehicles/#{vehicle.id}", headers: { "Authorization" => "Bearer #{token}" }, params: { registration_num: regis_num }
-      expect(JSON.parse(response.body)["registration_num"]).to eq(regis_num)
+      # expect(JSON.parse(response.body)["registration_num"]).to eq(regis_num)
+      expect(JSON.parse(response.body)['vehicle']['registration_num']).to eq(regis_num)
       expect(response).to have_http_status(200)
     end
 

@@ -27,6 +27,5 @@ class Report < ApplicationRecord
     curr_price = parking.vehicle.vehicle_price.price
     total_hours = (parking.check_out - parking.check_in) / 3600.00
     actual_price = curr_price * total_hours
-
   end
 end
