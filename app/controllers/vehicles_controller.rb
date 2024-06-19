@@ -48,5 +48,4 @@ class VehiclesController < ApplicationController
         render json: { errors: 'Its not yours...' }, status: :not_found unless @vehicle
     end
 
-
 end

@@ -1,4 +1,4 @@
-//= require active_admin/base
+//= require arctic_admin/base
 $(document).ready(function() {
     $('#user_select').change(function() {
         // debugger
